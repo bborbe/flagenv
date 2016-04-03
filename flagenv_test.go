@@ -3,8 +3,9 @@ package flagenv
 import (
 	"testing"
 
-	. "github.com/bborbe/assert"
 	"os"
+
+	. "github.com/bborbe/assert"
 )
 
 func TestParameterToEnvName(t *testing.T) {

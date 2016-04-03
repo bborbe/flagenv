@@ -2,9 +2,10 @@ package flagenv
 
 import (
 	"flag"
-	"strings"
 	"os"
 	"strconv"
+	"strings"
+
 	"github.com/bborbe/log"
 )
 
