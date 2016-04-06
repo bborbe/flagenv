@@ -5,6 +5,8 @@ import (
 
 	"os"
 
+	"time"
+
 	. "github.com/bborbe/assert"
 )
 
@@ -86,6 +88,23 @@ func TestBoolDefaultFalseEnv(t *testing.T) {
 	parameterPtr := Bool("parameter8", true, "usage")
 	Parse()
 	if err := AssertThat(*parameterPtr, Is(false)); err != nil {
+		t.Fatal(err)
+	}
+}
+
+func TestDurationDefault(t *testing.T) {
+	parameterPtr := Duration("parameter9", time.Minute*8, "usage")
+	Parse()
+	if err := AssertThat(*parameterPtr, Is(time.Minute*8)); err != nil {
+		t.Fatal(err)
+	}
+}
+
+func TestDurationDefaultEnv(t *testing.T) {
+	os.Setenv("PARAMETER10", "8m")
+	parameterPtr := Duration("parameter10", time.Minute*7, "usage")
+	Parse()
+	if err := AssertThat(*parameterPtr, Is(time.Minute*8)); err != nil {
 		t.Fatal(err)
 	}
 }

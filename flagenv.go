@@ -6,6 +6,8 @@ import (
 	"strconv"
 	"strings"
 
+	"time"
+
 	"github.com/bborbe/log"
 )
 
@@ -13,6 +15,10 @@ var logger = log.DefaultLogger
 
 func String(name string, value string, usage string) *string {
 	return flag.String(name, envString(parameterNameToEnvName(name), value), usage)
+}
+
+func Duration(name string, value time.Duration, usage string) *time.Duration {
+	return flag.Duration(name, envDuration(parameterNameToEnvName(name), value), usage)
 }
 
 func Int(name string, value int, usage string) *int {
@@ -38,6 +44,18 @@ func envBool(key string, def bool) bool {
 		}
 
 		return res
+	}
+	return def
+}
+
+func envDuration(key string, def time.Duration) time.Duration {
+	if env := os.Getenv(key); env != "" {
+		val, err := time.ParseDuration(env)
+		if err != nil {
+			logger.Debugf("invalid value for %q: using default: %q", key, def)
+			return def
+		}
+		return val
 	}
 	return def
 }
