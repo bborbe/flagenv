@@ -33,7 +33,9 @@ func TestStringDefault(t *testing.T) {
 }
 
 func TestStringDefaultEnv(t *testing.T) {
-	os.Setenv("PARAMETER2", "foo")
+	if err := os.Setenv("PARAMETER2", "foo"); err != nil {
+		t.Fatal(err)
+	}
 	parameterPtr := String("parameter2", "bar", "usage")
 	Parse()
 	if err := AssertThat(*parameterPtr, Is("foo")); err != nil {
@@ -50,7 +52,9 @@ func TestIntDefault(t *testing.T) {
 }
 
 func TestIntDefaultEnv(t *testing.T) {
-	os.Setenv("PARAMETER4", "1337")
+	if err := os.Setenv("PARAMETER4", "1337"); err != nil {
+		t.Fatal(err)
+	}
 	parameterPtr := Int("parameter4", 42, "usage")
 	Parse()
 	if err := AssertThat(*parameterPtr, Is(1337)); err != nil {
@@ -67,7 +71,9 @@ func TestBoolDefaultTrue(t *testing.T) {
 }
 
 func TestBoolDefaultTrueEnv(t *testing.T) {
-	os.Setenv("PARAMETER6", "true")
+	if err := os.Setenv("PARAMETER6", "true"); err != nil {
+		t.Fatal(err)
+	}
 	parameterPtr := Bool("parameter6", false, "usage")
 	Parse()
 	if err := AssertThat(*parameterPtr, Is(true)); err != nil {
@@ -84,7 +90,9 @@ func TestBoolDefaultFalse(t *testing.T) {
 }
 
 func TestBoolDefaultFalseEnv(t *testing.T) {
-	os.Setenv("PARAMETER8", "false")
+	if err := os.Setenv("PARAMETER8", "false"); err != nil {
+		t.Fatal(err)
+	}
 	parameterPtr := Bool("parameter8", true, "usage")
 	Parse()
 	if err := AssertThat(*parameterPtr, Is(false)); err != nil {
@@ -101,7 +109,9 @@ func TestDurationDefault(t *testing.T) {
 }
 
 func TestDurationDefaultEnv(t *testing.T) {
-	os.Setenv("PARAMETER10", "8m")
+	if err := os.Setenv("PARAMETER10", "8m"); err != nil {
+		t.Fatal(err)
+	}
 	parameterPtr := Duration("parameter10", time.Minute*7, "usage")
 	Parse()
 	if err := AssertThat(*parameterPtr, Is(time.Minute*8)); err != nil {
