@@ -8,10 +8,8 @@ import (
 
 	"time"
 
-	"github.com/bborbe/log"
+	"github.com/golang/glog"
 )
-
-var logger = log.DefaultLogger
 
 func String(name string, value string, usage string) *string {
 	return flag.String(name, envString(parameterNameToEnvName(name), value), usage)
@@ -52,7 +50,7 @@ func envDuration(key string, def time.Duration) time.Duration {
 	if env := os.Getenv(key); env != "" {
 		val, err := time.ParseDuration(env)
 		if err != nil {
-			logger.Debugf("invalid value for %q: using default: %q", key, def)
+			glog.V(2).Infof("invalid value for %q: using default: %q", key, def)
 			return def
 		}
 		return val
@@ -64,7 +62,7 @@ func envInt(key string, def int) int {
 	if env := os.Getenv(key); env != "" {
 		val, err := strconv.Atoi(env)
 		if err != nil {
-			logger.Debugf("invalid value for %q: using default: %q", key, def)
+			glog.V(2).Infof("invalid value for %q: using default: %q", key, def)
 			return def
 		}
 		return val
