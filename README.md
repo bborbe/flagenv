@@ -4,7 +4,7 @@ Flag adapter with env default values
 
 ## Continuous integration
 
-[Jenkins](https://www.benjamin-borbe.de/jenkins/job/Go-Flagenv/)
+[Jenkins](https://jenkins.benjamin-borbe.de/job/Go-Flagenv/)
 
 ## Copyright and license
 
