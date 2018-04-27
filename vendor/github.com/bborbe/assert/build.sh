@@ -1,6 +1,6 @@
 #!/bin/sh
 
-SOURCEDIRECTORY="github.com/bborbe/flagenv"
+SOURCEDIRECTORY="github.com/bborbe/assert"
 
 ################################################################################
 
