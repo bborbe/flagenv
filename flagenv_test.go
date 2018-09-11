@@ -2,6 +2,7 @@ package flagenv
 
 import (
 	"testing"
+
 	. "github.com/bborbe/assert"
 )
 
